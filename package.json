@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "dev:run": "nodemon --watch build build/index.js",
-    "dev:transpile": "esbuild ./src/index.ts --platform=node --bundle --outdir=build --watch",
-    "dev": "yarn run concurrently -k --kill-others-on-fail \"yarn dev:run\" \"yarn dev:transpile\"",
+    "dev:build": "esbuild ./src/index.ts --platform=node --bundle --outdir=build --watch",
+    "dev": "yarn run concurrently -k --kill-others-on-fail \"yarn dev:run\" \"yarn dev:build\"",
     "build": "esbuild ./src/index.ts --platform=node --bundle --minify --outdir=build",
     "start": "node ./build/index.js"
   },
