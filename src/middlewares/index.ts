@@ -12,6 +12,8 @@ export const proxy: RequestHandler = async (req, res) => {
 
         const headers = getHeaders(req);
 
+        console.log(`○ Send request: ${method} | ${url}`);
+
         const { data, status } = await client.request({
             method,
             url,
@@ -23,7 +25,9 @@ export const proxy: RequestHandler = async (req, res) => {
         return res.status(status).send(data);
     } catch (error) {
         return res
-            .status(error.response.status || 500)
-            .send(error.response.data || { message: error.message || "Error" });
+            .status(error?.response?.status || 500)
+            .send(
+                error?.response?.data || { message: error?.message || "Error" }
+            );
     }
 };
